@@ -1,45 +1,53 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import ProductContext from './../context/productCart';
+import { useContext } from 'react';
+
 
 import './Navbar.css';
 
 const Navbar = () => {
+    const productContext=useContext(ProductContext);
   return (
     <div>
-        <nav className="navbar navbar-expand-sm bg-dark navbar-dark py-5 fixed-top shadow-sm " >
+     <nav className="navbar navbar-expand-sm bg-dark navbar-dark  fixed-top shadow-sm " >
             <div className="container">
-                <a className="navbar-brand text-decoration-none " href=''>Frenzy Shop</a>
-                <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                <NavLink className="navbar-brand text-decoration-none " to='/'>Frenzy Shop</NavLink>
+                <ul className="navbar-nav mx-auto  mb-lg-0">
                     <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href='#'>Home</a>
+                    <NavLink className="nav-link " aria-current="page" to='/'>Home</NavLink>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href=''>Product</a>
+                    <NavLink className="nav-link" to='/products'>Product</NavLink>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link " href=''>About</a>
+                    <NavLink className="nav-link " to='/about'>About</NavLink>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href=''>Contact</a>
+                    <NavLink className="nav-link" to='/contact'>Contact</NavLink>
                     </li>
                     
                 </ul>
                 <div className="buttons d-flex  ">
-                    <a href='' class="btn btn-light ">
+                    <NavLink to='/login' className="btn btn-light ">
                         <i className="fa fa-sign-in me-1"></i>Login
-                    </a>    
+                    </NavLink>    
 
-                    <a href='' class="btn btn-light mx-3">
+                    <NavLink to="/sign" className="btn btn-light mx-3">
                         <i className="fa fa-user-plus me-1"></i>Register
-                    </a>   
-                    <a href='' class="btn btn-light  ">
-                        <i className="fa fa-shopping-cart me-1"></i>Cart
-                    </a>   
+                    </NavLink>   
+                    <NavLink to="/cart" className="btn btn-light  " >
+                        <i className="fa fa-shopping-cart me-1"></i>Cart{productContext.cartCount}
+                    </NavLink>   
                         
                 </div>
             </div>
         </nav>
-    
+
     </div>
+       
+    
+    
   );
 }
 
