@@ -7,7 +7,7 @@ import{useState} from 'react';
 
 
 
-const Register = ({submitForm}) => {
+const Register = ({submitForm,registerCompleet}) => {
     const[values,setValues]=useState({
         username:"",
         email:"",
@@ -64,14 +64,17 @@ const Register = ({submitForm}) => {
 
         e.preventDefault();
         setErrors(validate(values));
-        setDataIsCorrect(true);
+        let submit=submitForm(true);
+        
+        
         console.log(errors);
     }
 
-
+ //it will be  re render again if the object doesnt have any error //
     useEffect(()=>{
-        if(Object.keys(errors).length===0&& dataIsCorrect){
-            submitForm(true);
+        if(Object.keys(errors).length===0&&registerCompleet ){
+            let submit=submitForm(true);
+            console.log(submit);
         }
 
     },[errors]);
